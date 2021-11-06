@@ -32,10 +32,13 @@
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
         
-        //desenha elementos
+        //Atualiza estado
+        x = x + 10*dt;
+         //desenha elementos
          
          ctx.fillStyle = "Red";
          ctx.fillRect(x,150,  20,20);
+         
          //chama a função desenha infinitas vezes
          requestAnimationFrame(desenha);
          t0 = t;
