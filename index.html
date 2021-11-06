@@ -18,7 +18,8 @@
          canvas.width = 480;
          canvas.height = 320;
          
-         let x =100;
+         let x =150;
+         let y = 100;
          let t0;
          let dt; 
          requestAnimationFrame(desenha);
@@ -34,10 +35,11 @@
         
         //Atualiza estado
         x = x + 10*dt;
+        y = 100 + 1500*Math.cos(t/200)*dt;
          //desenha elementos
          
          ctx.fillStyle = "Red";
-         ctx.fillRect(x,150,  20,20);
+         ctx.fillRect(x,y,  20,20);
          
          //chama a função desenha infinitas vezes
          requestAnimationFrame(desenha);
