@@ -28,16 +28,16 @@
          function desenha(t){
 
         if(t0===undefined) t0 = t;
-        dt = (t - t0)/1000;
+        dt = (t - t0)/2000;
         //desenha fundo
          
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
         
         //Atualiza estado
-        x = x + 10*dt;
+        x = x + 100*dt;
         a = a +2*Math.PI*dt;
-        y = 100 + 100*Math.cos(a);
+        y = 150 + 100*Math.cos(a);
          //desenha elementos
          
          ctx.fillStyle = "Red";
