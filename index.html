@@ -19,12 +19,14 @@
          canvas.height = 320;
          
          let x =100;
+         let t0;
+         let dt; 
+         requestAnimationFrame(desenha);
          
-         desenha();
-         
-         function desenha(){
+         function desenha(t){
 
-    
+        if(t0===undefined) t0 = t;
+        dt = (t - t0)/1000;
         //desenha fundo
          
         ctx.fillStyle = "black";
@@ -34,6 +36,9 @@
          
          ctx.fillStyle = "Red";
          ctx.fillRect(x,150,  20,20);
+         //chama a função desenha infinitas vezes
+         requestAnimationFrame(desenha);
+         t0 = t;
          }
         
 
