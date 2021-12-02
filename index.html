@@ -26,6 +26,8 @@
           y : 100,
           vy : 0,
           ay : 0,
+          w: 40,
+          h: 15,
           cor:"Red",
            desenhar: desenharElemento,
         
@@ -43,6 +45,8 @@
           y  : canvas.height * Math.random(),
           vy : 0,
           ay : 0,
+          w: 15,
+          h: 15,
           cor: "White",
           desenhar: desenharElemento,
           mover: moverElemento,
@@ -58,6 +62,8 @@
           y : 150,
           vy : 0,
           ay : 0,
+          w: 5,
+          h: 5,
           cor:"Blue",
            desenhar: desenharElemento,
         
@@ -91,7 +97,7 @@
           
          
          p.mover();
-         p.desenhar();
+        
 
          for (let s = 0; s < sprites.length; s++) {
              const sprite = sprites[s];
@@ -130,6 +136,7 @@
             pontos-=3;
            }
          }
+         p.desenhar();
          ctx.fillStyle="yellow";
          ctx.font="20px impact"
          ctx.fillText(pontos,10,30);
@@ -152,7 +159,7 @@
          function desenharElemento(){
            
            ctx.fillStyle = this.cor;
-           ctx.fillRect(this.x,this.y,  20,20);
+           ctx.fillRect(this.x,this.y,this.w,this.h);
          }
 
          function perseguirAlvo(alvo){
@@ -249,10 +256,10 @@
         }
         function colidiram(A,B) {
           return  !(
-                (A.x > B.x + 20)
-              ||(A.x +20 < B.x )
-              ||(A.y > B.y + 20)
-              ||(A.y +20 < B.y )
+                (A.x > B.x + B.w)
+              ||(A.x +A.w < B.x )
+              ||(A.y > B.y + B.h)
+              ||(A.y +A.h < B.y )
               );
         }
 
