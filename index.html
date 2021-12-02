@@ -31,12 +31,14 @@
 
        
           };
-         
-        let e= {
-          x : 300,
+         const sprites = [];
+         for (let ne = 0; ne < 20; ne++) {
+           
+          let e= {
+          x : canvas.width * Math.random(),
           vx : 0,
           ax : 0,
-          y  : 200,
+          y  : canvas.height * Math.random(),
           vy : 0,
           ay : 0,
           cor: "White",
@@ -44,6 +46,8 @@
           mover: moverElemento,
          controlar: perseguirAlvo
           };
+          sprites.push(e);
+        }
         
         //refatora para extrair constante de velocidade
          const V = 180;
@@ -61,18 +65,27 @@
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
           
+         
+         p.mover();
+         p.desenhar();
+
+         for (let s = 0; s < sprites.length; s++) {
+             const sprite = sprites[s];
+             
+   
          //controladores
-         e.controlar(p);
+          sprite.controlar(p);
          
         
         //Atualiza Dinamica dos estados
-           p.mover();
-           e.mover();
+           
+           sprite.mover();
        
          //desenha elementos
-           p.desenhar();
+           
          
-           e.desenhar();
+           sprite.desenhar();
+         }
          
          
          //chama a função desenha infinitas vezes
