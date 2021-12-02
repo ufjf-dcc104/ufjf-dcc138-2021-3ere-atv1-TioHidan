@@ -47,8 +47,11 @@
          requestAnimationFrame(desenha);
          t0 = t;
          }
-          
+          // evento pra quando vc quer que o boneco se mova infinito
          addEventListener("keydown" , teclapressionada);
+         // evento para quando voce soltar o dedo do botao o personagem parar
+         addEventListener("keyup" , teclasolta);
+
 
          function teclapressionada(e){
           //adiciona controle de velocidades
@@ -70,13 +73,36 @@
                    vx= -20;
                    break;
 
-                   default:
-                   break;
+                 
 
            }
 
            
          }
+         function teclasolta(e) {
+          //adiciona controle de velocidades sem manter pressionado
+           switch (e.key){
+               
+                  case "ArrowUp":
+                   vy=0;
+                   break;
+                
+                   case "ArrowDown":
+                   vy= 0;
+                   break;
+
+                   case "ArrowRight":
+                   vx=0;
+                   break;
+                
+                   case "ArrowLeft":
+                   vx= 0;
+                   break;
+
+                   
+
+           }
+        }
 
         
 
