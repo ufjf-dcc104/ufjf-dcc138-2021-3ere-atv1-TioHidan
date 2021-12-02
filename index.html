@@ -22,6 +22,8 @@
          let vx= 0;
          let y = 100;
          let vy= 0;
+        //refatora para extrair constante de velocidade
+         const V = 180;
          let t0;
          let dt; 
          requestAnimationFrame(desenha);
@@ -58,19 +60,19 @@
            switch (e.key){
                
                   case "ArrowUp":
-                   vy=-20;
+                   vy=-V;
                    break;
                 
                    case "ArrowDown":
-                   vy= +20;
+                   vy= +V;
                    break;
 
                    case "ArrowRight":
-                   vx=+20;
+                   vx=+V;
                    break;
                 
                    case "ArrowLeft":
-                   vx= -20;
+                   vx= -V;
                    break;
 
                  
