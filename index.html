@@ -41,7 +41,8 @@
           ay : 0,
           cor: "White",
           desenhar: desenharElemento,
-          mover: moverElemento
+          mover: moverElemento,
+         controlar: perseguirAlvo
           };
         
         //refatora para extrair constante de velocidade
@@ -54,50 +55,74 @@
 
         if(t0===undefined) t0 = t;
         dt = (t - t0)/1000;
+        
         //desenha fundo
          
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
           
          //controladores
-         e.ay= 0.5*(p.y - e.y) - 0.2*e.vx;
-         e.ax= 0.5*(p.x - e.x) - 0.2*e.vy;
+         e.controlar(p);
+         
         
         //Atualiza Dinamica dos estados
-        p.mover();
-        e.mover();
+           p.mover();
+           e.mover();
        
          //desenha elementos
-         p.desenhar();
+           p.desenhar();
          
-         e.desenhar();
+           e.desenhar();
          
          
          //chama a função desenha infinitas vezes
          requestAnimationFrame(desenha);
          t0 = t;
          }
+        
+        
          function moverElemento(){
         this.vx= this.vx + this.ax*dt;
         this.x = this.x + this.vx*dt;
         this.vy= this.vy + this.ay*dt;
         this.y = this.y + this.vy*dt;
          }
+         
+         // desenhar elemento
          function desenharElemento(){
            
            ctx.fillStyle = this.cor;
            ctx.fillRect(this.x,this.y,  20,20);
          }
+
+         function perseguirAlvo(alvo){
+            
+            this.ay= 0.5*(alvo.y - this.y) - 0.2*this.vx;
+            this.ax= 0.5*(alvo.x - this.x) - 0.2*this.vy;
+         }
+
+         function evitarAlvo(alvo){
+            
+            this.ay= -0.5*(alvo.y - this.y) - 0.2*this.vx;
+            this.ax= -0.5*(alvo.x - this.x) - 0.2*this.vy;
+         }
         
-        // evento pra quando vc quer que o boneco se mova infinito
+       
+       
+         // evento pra quando vc quer que o boneco se mova infinito
          addEventListener("keydown" , teclapressionada);
+         
+         
          
          // evento para quando voce soltar o dedo do botao o personagem parar
          addEventListener("keyup" , teclasolta);
 
 
+        
+        
+        //adiciona controle de velocidades
          function teclapressionada(e){
-          //adiciona controle de velocidades
+          
            switch (e.key){
                
                   case "ArrowUp":
@@ -122,8 +147,9 @@
 
            
          }
+         //adiciona controle de velocidades sem manter pressionado
          function teclasolta(e) {
-          //adiciona controle de velocidades sem manter pressionado
+          
            switch (e.key){
                
                   case "ArrowUp":
