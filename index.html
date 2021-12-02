@@ -35,7 +35,7 @@
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
         
-        //Atualiza estado
+        //Atualiza Dinamica dos estados
         x = x + vx*dt;
         y = y + vy*dt;
          //desenha elementos
@@ -47,13 +47,34 @@
          requestAnimationFrame(desenha);
          t0 = t;
          }
-
+          
          addEventListener("keydown" , teclapressionada);
 
          function teclapressionada(e){
+          //adiciona controle de velocidades
+           switch (e.key){
+               
+                  case "ArrowUp":
+                   vy=-20;
+                   break;
+                
+                   case "ArrowDown":
+                   vy= +20;
+                   break;
 
-           console.log(e.key);
-           
+                   case "ArrowRight":
+                   vx=+20;
+                   break;
+                
+                   case "ArrowLeft":
+                   vx= -20;
+                   break;
+
+                   default:
+                   break;
+
+           }
+
            
          }
 
