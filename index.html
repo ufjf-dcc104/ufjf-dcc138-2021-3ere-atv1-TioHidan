@@ -27,13 +27,16 @@
 
          };
          
+        let e= {
+             ex : 300,
+          evx : 0,
+          eax : 0,
+          ey  : 200,
+          evy : 0,
+          eay : 0
 
-         let ex =300;
-         let evx= 0;
-         let eax= 0;
-         let ey = 200;
-         let evy= 0;
-         let eay= 0;
+        };
+        
         //refatora para extrair constante de velocidade
          const V = 180;
          let t0;
@@ -50,8 +53,8 @@
          ctx.fillRect(0,0,  canvas.width,canvas.height);
           
          //controladores
-         eay= 0.5*(p.y - ey) - 0.2*evx;
-         eax= 0.5*(p.x - ex) - 0.2*evy;
+         e.eay= 0.5*(p.y - e.ey) - 0.2*e.evx;
+         e.eax= 0.5*(p.x - e.ex) - 0.2*e.evy;
         
         //Atualiza Dinamica dos estados
         p.vx= p.vx + p.ax*dt;
@@ -59,17 +62,17 @@
         p.vy= p.vy + p.ay*dt;
         p.y = p.y + p.vy*dt;
 
-        evx= evx + eax*dt;
-        ex = ex + evx*dt;
-        evy= evy + eay*dt;
-        ey = ey + evy*dt;
+        e.evx= e.evx + e.eax*dt;
+        e.ex = e.ex + e.evx*dt;
+        e.evy= e.evy + e.eay*dt;
+        e.ey = e.ey + e.evy*dt;
          //desenha elementos
          
          ctx.fillStyle = "Red";
          ctx.fillRect(p.x,p.y,  20,20);
 
          ctx.fillStyle = "White";
-         ctx.fillRect(ex,ey,  20,20);
+         ctx.fillRect(e.ex,e.ey,  20,20);
          
          //chama a função desenha infinitas vezes
          requestAnimationFrame(desenha);
