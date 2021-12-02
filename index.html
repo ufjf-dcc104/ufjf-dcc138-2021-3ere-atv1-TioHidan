@@ -19,8 +19,9 @@
          canvas.height = 320;
          
          let x =150;
+         let vx= 0;
          let y = 100;
-         let a = 0;
+         let vy= 0;
          let t0;
          let dt; 
          requestAnimationFrame(desenha);
@@ -28,16 +29,15 @@
          function desenha(t){
 
         if(t0===undefined) t0 = t;
-        dt = (t - t0)/2000;
+        dt = (t - t0)/1000;
         //desenha fundo
          
         ctx.fillStyle = "black";
          ctx.fillRect(0,0,  canvas.width,canvas.height);
         
         //Atualiza estado
-        x = x + 1*dt;
-        a = a +2*Math.PI*dt;
-        y = 10 + 10*Math.trunc(a);
+        x = x + vx*dt;
+        y = y + vy*dt;
          //desenha elementos
          
          ctx.fillStyle = "Red";
@@ -47,6 +47,16 @@
          requestAnimationFrame(desenha);
          t0 = t;
          }
+
+         addEventListener("keydown" , teclapressionada);
+
+         function teclapressionada(e){
+
+           console.log(e.key);
+           
+           
+         }
+
         
 
     </script>
