@@ -48,6 +48,28 @@
           };
           sprites.push(e);
         }
+
+        let o={
+          x: -1000,
+          vx :0,
+          ax : 0,
+          y : 150,
+          vy : 0,
+          ay : 0,
+          cor:"Blue",
+           desenhar: desenharElemento,
+        
+            mover: moverElemento,
+            controlar: function (params) {
+               if(this.x> canvas.width +60) {
+                   this.x= -1000;
+                   this.ax=0;
+                   this.vx=0;
+               }
+            }
+            
+         };
+         sprites.push(o);
         
         //refatora para extrair constante de velocidade
          const V = 180;
@@ -74,7 +96,7 @@
              
    
          //controladores
-          sprite.controlar(p);
+          sprite.controlar?.(p);
          
         
         //Atualiza Dinamica dos estados
@@ -183,6 +205,15 @@
                    case "ArrowLeft":
                    
                    p.ax=0;
+                   break;
+
+                   case " ":
+                   if(o.x=== -1000){
+                   o.x=p.x;
+                   o.y=p.y;
+                   o.vx=200;
+                   o.ax=100;
+                   }
                    break;
 
                    
